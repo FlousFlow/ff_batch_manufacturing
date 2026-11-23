@@ -132,3 +132,17 @@ class TestBatchManufacturing(TransactionCase):
         self.assertEqual(batch.state, 'done')
         self.assertEqual(batch.production_ids.state, 'done')
         self.assertEqual(batch.production_ids.product_qty, 1.0)
+
+    def test_work_orders_explain_why_automatic_completion_stops(self):
+        workcenter = self.env['mrp.workcenter'].create({
+            'name': 'FF Batch Test Workcenter',
+            'company_id': self.company.id,
+        })
+        self.finished_bom.write({'operation_ids': [Command.create({
+            'name': 'FF Batch Test Operation',
+            'workcenter_id': workcenter.id,
+            'time_cycle': 10,
+        })]})
+        batch = self._batch()
+        with self.assertRaisesRegex(UserError, 'unrelated to lot/serial tracking'):
+            batch.action_confirm_manufacture()

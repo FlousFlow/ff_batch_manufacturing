@@ -127,7 +127,10 @@ class FfBatchManufacturing(models.Model):
             for production in productions:
                 if production.workorder_ids:
                     raise UserError(_(
-                        'Manufacturing order %s has work orders. Complete it through the native Work Orders flow.',
+                        'Manufacturing order %s cannot be completed automatically because its BoM '
+                        'contains work center operations, which created work orders. Open the '
+                        'manufacturing order, complete the work orders from the Work Orders tab, '
+                        'then mark the manufacturing order as done. This is unrelated to lot/serial tracking.',
                         production.display_name,
                     ))
                 production.action_assign()

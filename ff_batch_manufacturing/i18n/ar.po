@@ -356,10 +356,12 @@ msgstr "يجب أن تكون مواقع التصنيع مواقع مخزون د�
 #. odoo-python
 #: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
 msgid ""
-"Manufacturing order %s has work orders. Complete it through the native Work "
-"Orders flow."
+"Manufacturing order %s cannot be completed automatically because its BoM "
+"contains work center operations, which created work orders. Open the "
+"manufacturing order, complete the work orders from the Work Orders tab, "
+"then mark the manufacturing order as done. This is unrelated to lot/serial tracking."
 msgstr ""
-"أمر التصنيع %s يحتوي على أوامر عمل. أكمله من خلال مسار أوامر العمل الأصلي."
+"لا يمكن إتمام أمر التصنيع %s تلقائيًا لأن قائمة مواده تحتوي على عمليات مراكز عمل، ولذلك أنشأ أودو أوامر عمل. افتح أمر التصنيع، وأكمل أوامر العمل من تبويب «أوامر العمل»، ثم أنهِ أمر التصنيع. المشكلة ليست بسبب التتبع بالدفعات أو الأرقام التسلسلية."
 
 #. module: ff_batch_manufacturing
 #. odoo-python
