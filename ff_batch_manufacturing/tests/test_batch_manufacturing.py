@@ -60,6 +60,14 @@ class TestBatchManufacturing(TransactionCase):
         self.assertEqual(len(batch.production_ids), 2)
         self.assertEqual(len(set(batch.production_ids.ids)), 2)
 
+    def test_view_components_returns_native_production_form_action(self):
+        batch = self._batch()
+        action = batch.line_ids.action_view_components()
+        self.assertEqual(action['res_id'], batch.line_ids.production_id.id)
+        self.assertEqual(action['view_mode'], 'form')
+        self.assertEqual(action['target'], 'new')
+        self.assertFalse(action['context']['create'])
+
     def test_quantity_scales_current_component_moves(self):
         batch = self._batch()
         line = batch.line_ids

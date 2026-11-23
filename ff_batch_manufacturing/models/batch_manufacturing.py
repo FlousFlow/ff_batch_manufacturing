@@ -359,6 +359,14 @@ class FfBatchManufacturingLine(models.Model):
             self._sync_productions()
         if not self.production_id:
             raise UserError(_('Save the line before opening its components.'))
-        action = self.production_id.get_formview_action()
-        action['target'] = 'new'
+        action = self.env['ir.actions.actions']._for_xml_id(
+            'mrp.action_mrp_production_form'
+        )
+        action.update({
+            'name': self.production_id.display_name,
+            'view_mode': 'form',
+            'res_id': self.production_id.id,
+            'target': 'new',
+            'context': {'create': False},
+        })
         return action
