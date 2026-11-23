@@ -157,7 +157,7 @@ class FfBatchManufacturing(models.Model):
 
     def action_view_manufacturing_orders(self):
         self.ensure_one()
-        action = self.env['ir.actions.actions']._for_xml_id('mrp.action_mrp_production_form')
+        action = self.env['ir.actions.actions']._for_xml_id('mrp.mrp_production_action')
         action.update({
             'name': _('Manufacturing Orders'),
             'domain': [('id', 'in', self.production_ids.ids)],

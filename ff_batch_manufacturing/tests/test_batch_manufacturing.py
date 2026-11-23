@@ -68,6 +68,12 @@ class TestBatchManufacturing(TransactionCase):
         self.assertEqual(action['target'], 'new')
         self.assertFalse(action['context']['create'])
 
+    def test_view_manufacturing_orders_returns_linked_orders_list(self):
+        batch = self._batch(lines=2)
+        action = batch.action_view_manufacturing_orders()
+        self.assertEqual(action['domain'], [('id', 'in', batch.production_ids.ids)])
+        self.assertIn('list', action['view_mode'])
+
     def test_standard_quantity_widget_data_is_available_on_draft_line(self):
         batch = self._batch()
         line = batch.line_ids
