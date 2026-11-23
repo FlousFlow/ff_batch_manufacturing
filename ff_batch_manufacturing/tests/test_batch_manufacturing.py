@@ -35,14 +35,14 @@ class TestBatchManufacturing(TransactionCase):
             })],
         })
 
-    def _batch(self, lines=1):
+    def _batch(self, lines=1, product_qty=1.0):
         batch = self.env['ff.batch.manufacturing'].create({
             'picking_type_id': self.picking_type.id,
             'location_src_id': self.source.id,
             'location_dest_id': self.destination.id,
             'line_ids': [Command.create({
                 'product_id': self.finished.id,
-                'product_qty': 1.0,
+                'product_qty': product_qty,
                 'uom_id': self.finished.uom_id.id,
             }) for _index in range(lines)],
         })
@@ -132,6 +132,35 @@ class TestBatchManufacturing(TransactionCase):
         self.assertEqual(batch.state, 'done')
         self.assertEqual(batch.production_ids.state, 'done')
         self.assertEqual(batch.production_ids.product_qty, 1.0)
+
+    def test_quantity_only_tracking_completes_multiple_units(self):
+        self.assertIn(self.finished.tracking, (False, 'none'))
+        self.assertIn(self.component.tracking, (False, 'none'))
+        self.env['stock.quant']._update_available_quantity(self.component, self.source, 6.0)
+        batch = self._batch(product_qty=3.0)
+
+        batch.action_confirm_manufacture()
+
+        production = batch.production_ids
+        self.assertEqual(batch.state, 'done')
+        self.assertEqual(production.state, 'done')
+        self.assertEqual(production.product_qty, 3.0)
+        raw_move = production.move_raw_ids.filtered(lambda move: move.product_id == self.component)
+        self.assertEqual(raw_move.product_uom_qty, 6.0)
+        self.assertEqual(raw_move.state, 'done')
+
+    def test_quantity_only_tracking_completes_two_independent_lines(self):
+        self.assertIn(self.finished.tracking, (False, 'none'))
+        self.assertIn(self.component.tracking, (False, 'none'))
+        self.env['stock.quant']._update_available_quantity(self.component, self.source, 8.0)
+        batch = self._batch(lines=2, product_qty=2.0)
+
+        batch.action_confirm_manufacture()
+
+        self.assertEqual(batch.state, 'done')
+        self.assertEqual(len(batch.production_ids), 2)
+        self.assertTrue(all(production.state == 'done' for production in batch.production_ids))
+        self.assertEqual(sum(batch.production_ids.mapped('product_qty')), 4.0)
 
     def test_work_orders_explain_why_automatic_completion_stops(self):
         workcenter = self.env['mrp.workcenter'].create({
