@@ -156,6 +156,22 @@ class TestBatchManufacturing(TransactionCase):
         self.assertEqual(batch.production_ids.state, 'done')
         self.assertEqual(batch.production_ids.product_qty, 1.0)
 
+    def test_edited_mo_components_are_consumed_without_changing_bom(self):
+        self.env['stock.quant']._update_available_quantity(self.component, self.source, 3.0)
+        batch = self._batch()
+        move = batch.line_ids.production_id.move_raw_ids.filtered(
+            lambda item: item.product_id == self.component
+        )
+        move.product_uom_qty = 3.0
+
+        batch.action_confirm_manufacture()
+
+        self.assertEqual(batch.state, 'done')
+        self.assertEqual(batch.production_ids.state, 'done')
+        self.assertEqual(move.product_uom_qty, 3.0)
+        self.assertEqual(move.quantity, 3.0)
+        self.assertEqual(self.finished_bom.bom_line_ids.product_qty, 2.0)
+
     def test_reset_done_batch_returns_to_draft_without_unbuild(self):
         self.env['stock.quant']._update_available_quantity(self.component, self.source, 2.0)
         batch = self._batch()

@@ -144,7 +144,13 @@ class FfBatchManufacturing(models.Model):
                         production.display_name,
                     ))
                 production.action_assign()
-                result = production.button_mark_done()
+                # Components edited from the batch's native MO form are the
+                # demand for this MO only.  Treat that edited demand as the
+                # consumed quantity for this one-click flow; the source BoM is
+                # never written or changed.
+                for move in production.move_raw_ids.filtered(lambda m: m.state not in ('done', 'cancel')):
+                    move._set_quantity_done(move.product_uom_qty)
+                result = production.with_context(skip_consumption=True).button_mark_done()
                 if isinstance(result, dict):
                     raise UserError(_(
                         'Manufacturing order %s requires an additional native Odoo step before it can be completed.',

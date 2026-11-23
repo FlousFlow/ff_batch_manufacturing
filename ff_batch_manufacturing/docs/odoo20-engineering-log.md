@@ -46,3 +46,9 @@
 - Evidence: Odoo 20 `mrp.production.action_reset_to_draft` and `stock.move._action_reset_to_draft` inspected in the local source.
 - Test: 19 addon tests passed, 0 failed, 0 errors.
 - Boundary: this is a workflow-state reset only; it does not reverse the posted stock valuation/quant changes from the completed manufacturing. Users must not use it as an inventory correction.
+
+### 2026-11-23 — Consume edited MO components without changing the BoM
+
+- Decision: the batch completion flow now treats raw-material quantities edited from the native linked MO form as this MO's consumed quantities, skips the native BoM-vs-consumption warning for this controlled flow, and leaves the original BoM unchanged.
+- Test: added an edited-component scenario; 20 addon tests passed, 0 failed, 0 errors.
+- Boundary: stock availability still follows the normal Odoo stock moves; editing the MO can intentionally consume a quantity different from the source BoM.
