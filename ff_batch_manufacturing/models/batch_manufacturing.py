@@ -99,6 +99,16 @@ class FfBatchManufacturing(models.Model):
             self._propagate_default_locations()
         return result
 
+    @api.onchange('location_src_id', 'location_dest_id')
+    def _onchange_locations(self):
+        """Keep existing in-form lines aligned when header locations change."""
+        for batch in self:
+            if batch.state != 'draft':
+                continue
+            for line in batch.line_ids:
+                line.location_src_id = batch.location_src_id
+                line.location_dest_id = batch.location_dest_id
+
     def _propagate_default_locations(self):
         for batch in self:
             if batch.state != 'draft':
