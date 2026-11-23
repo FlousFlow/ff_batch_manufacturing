@@ -8,7 +8,7 @@
   native draft `mrp.production` each; repeated products remain independent.
 - Component customization is held on the production's stock moves and never
   writes the master BoM. Quantity changes scale the current moves.
-- Added header location defaults with independent line overrides, draft-time
+- Added header location defaults with automatic line propagation, draft-time
   availability preview, native manufacturing action, manager-only reset guard,
   access rules using Odoo 20's `ir.access`, Arabic translations, views, sequence
   and focused tests.
@@ -26,9 +26,10 @@
 ## 2026-11-23 — Batch form cleanup
 
 - Removed the unused Summary notebook page.
-- Kept header locations as the default source for every line, while making
+- Kept header locations as the only source for every line, while making
   location, availability, cost and linked-MO columns `optional="hide"` so users
-  can choose them through the standard Odoo list-column selector.
+  can choose them through the standard Odoo list-column selector. Removed the
+  unused per-line custom source/destination flags.
 
 ## Boundaries
 

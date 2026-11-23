@@ -75,24 +75,21 @@ class TestBatchManufacturing(TransactionCase):
         line.production_id.move_raw_ids.filtered(lambda item: item.product_id == self.component).product_uom_qty = 9.0
         self.assertEqual(self.finished_bom.bom_line_ids.product_qty, original_qty)
 
-    def test_location_override_survives_header_change(self):
-        alternate = self.env['stock.location'].create({
-            'name': 'FF Batch Alternate', 'usage': 'internal', 'location_id': self.source.location_id.id,
-            'company_id': self.company.id,
-        })
+    def test_header_locations_propagate_to_lines(self):
         batch = self._batch()
         line = batch.line_ids
-        line.write({'location_src_id': alternate.id, 'source_location_override': True})
-        batch.write({'location_src_id': self.destination.id})
-        self.assertEqual(line.location_src_id, alternate)
+        batch.write({
+            'location_src_id': self.destination.id,
+            'location_dest_id': self.source.id,
+        })
+        self.assertEqual(line.location_src_id, self.destination)
+        self.assertEqual(line.location_dest_id, self.source)
 
     def test_line_locations_default_from_batch_header(self):
         batch = self._batch()
         line = batch.line_ids
         self.assertEqual(line.location_src_id, self.source)
         self.assertEqual(line.location_dest_id, self.destination)
-        self.assertFalse(line.source_location_override)
-        self.assertFalse(line.dest_location_override)
 
     def test_empty_batch_is_rejected(self):
         batch = self.env['ff.batch.manufacturing'].create({

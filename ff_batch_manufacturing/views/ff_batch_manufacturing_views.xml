@@ -60,8 +60,6 @@
                                     <field name="uom_id"/>
                                     <field name="location_src_id" optional="hide"/>
                                     <field name="location_dest_id" optional="hide"/>
-                                    <field name="source_location_override" string="Custom Source" optional="hide"/>
-                                    <field name="dest_location_override" string="Custom Destination" optional="hide"/>
                                     <field name="components_availability_state" widget="badge" optional="hide"
                                            decoration-success="components_availability_state == 'available'"
                                            decoration-danger="components_availability_state == 'unavailable'"

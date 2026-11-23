@@ -30,7 +30,7 @@ The package includes the supplied Flous Flow/Odoo 20 cover artwork in
 - Repeated products on two lines create two independent Manufacturing Orders.
 - Changing a line quantity scales its current component moves, including manual
   additions, removals and replacements, without reloading the master BoM.
-- Header locations populate lines until a user explicitly overrides a line.
+- Header source and destination locations populate every line automatically.
 - Availability is informational and does not add a custom negative-stock block.
 - Work Orders, serial/lot wizards, multi-step pickings and other mandatory
   native workflows are not bypassed; unsupported one-click cases return an
@@ -51,8 +51,8 @@ added. Standard Odoo Manufacturing permissions and company rules apply.
 ## Testing
 
 The test suite covers line persistence and draft-MO creation, repeated products,
-component scaling, master-BoM protection, location overrides, empty-batch
-validation and native one-step completion. Run it on a disposable Odoo 20
+component scaling, master-BoM protection, header-location propagation,
+empty-batch validation and native one-step completion. Run it on a disposable Odoo 20
 database with:
 
 ```bash

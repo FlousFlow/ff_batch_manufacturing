@@ -104,13 +104,10 @@ class FfBatchManufacturing(models.Model):
             if batch.state != 'draft':
                 continue
             for line in batch.line_ids:
-                updates = {}
-                if not line.source_location_override:
-                    updates['location_src_id'] = batch.location_src_id.id
-                if not line.dest_location_override:
-                    updates['location_dest_id'] = batch.location_dest_id.id
-                if updates:
-                    line.with_context(ff_batch_sync=True).write(updates)
+                line.with_context(ff_batch_sync=True).write({
+                    'location_src_id': batch.location_src_id.id,
+                    'location_dest_id': batch.location_dest_id.id,
+                })
 
     def _validate_for_execution(self):
         self.ensure_one()
@@ -193,8 +190,6 @@ class FfBatchManufacturingLine(models.Model):
     bom_id = fields.Many2one('mrp.bom', string='Standard BoM', readonly=True, check_company=True)
     location_src_id = fields.Many2one('stock.location', string='Component Source Location', required=True, check_company=True)
     location_dest_id = fields.Many2one('stock.location', string='Finished Product Destination', required=True, check_company=True)
-    source_location_override = fields.Boolean(string='Custom Component Location')
-    dest_location_override = fields.Boolean(string='Custom Finished Location')
     production_id = fields.Many2one('mrp.production', string='Manufacturing Order', readonly=True, copy=False, ondelete='restrict')
     components_availability_state = fields.Selection([
         ('available', 'Available'), ('expected', 'Expected'), ('late', 'Late'), ('unavailable', 'Not Available'),
@@ -273,15 +268,6 @@ class FfBatchManufacturingLine(models.Model):
 
     def write(self, vals):
         vals = dict(vals)
-        if not self.env.context.get('ff_batch_sync'):
-            if 'location_src_id' in vals and 'source_location_override' not in vals:
-                vals['source_location_override'] = True
-            if 'location_dest_id' in vals and 'dest_location_override' not in vals:
-                vals['dest_location_override'] = True
-            if vals.get('source_location_override') is False:
-                vals['location_src_id'] = self.batch_id.location_src_id.id
-            if vals.get('dest_location_override') is False:
-                vals['location_dest_id'] = self.batch_id.location_dest_id.id
         quantity_changed = 'product_qty' in vals
         product_changed = 'product_id' in vals or 'uom_id' in vals
         result = super().write(vals)

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ff_batch_manufacturing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-23 15:58+0000\n"
+"POT-Creation-Date: 2026-11-23 16:28+0000\n"
 "Language: ar\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 
@@ -194,26 +194,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__currency_id
 msgid "Currency"
 msgstr "العملة"
-
-#. module: ff_batch_manufacturing
-#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__source_location_override
-msgid "Custom Component Location"
-msgstr "موقع مكونات مخصص"
-
-#. module: ff_batch_manufacturing
-#: model_terms:ir.ui.view,arch_db:ff_batch_manufacturing.ff_batch_manufacturing_view_form
-msgid "Custom Destination"
-msgstr "وجهة مخصصة"
-
-#. module: ff_batch_manufacturing
-#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__dest_location_override
-msgid "Custom Finished Location"
-msgstr "موقع منتجات نهائية مخصص"
-
-#. module: ff_batch_manufacturing
-#: model_terms:ir.ui.view,arch_db:ff_batch_manufacturing.ff_batch_manufacturing_view_form
-msgid "Custom Source"
-msgstr "مصدر مخصص"
 
 #. module: ff_batch_manufacturing
 #: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__components_customized
@@ -562,11 +542,6 @@ msgid ""
 msgstr ""
 
 #. module: ff_batch_manufacturing
-#: model_terms:ir.ui.view,arch_db:ff_batch_manufacturing.ff_batch_manufacturing_view_form
-msgid "Summary"
-msgstr "الملخص"
-
-#. module: ff_batch_manufacturing
 #. odoo-python
 #: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
 msgid "The line company must match the batch company."
@@ -619,4 +594,3 @@ msgstr "عرض المكونات"
 #: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
 msgid "id"
 msgstr ""
-
