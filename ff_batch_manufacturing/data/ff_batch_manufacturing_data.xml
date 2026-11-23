@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ff_batch_manufacturing_sequence" model="ir.sequence">
+        <field name="name">Batch Manufacturing</field>
+        <field name="code">ff.batch.manufacturing</field>
+        <field name="prefix">BATCH/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

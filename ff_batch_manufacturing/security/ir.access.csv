@@ -1,0 +1,5 @@
+id,name,model_id,group_id/id,operation,domain
+access_ff_batch_manufacturing_user,ff.batch.manufacturing user,ff.batch.manufacturing,mrp.group_mrp_user,cru,"[('company_id', 'in', company_ids)]"
+access_ff_batch_manufacturing_manager,ff.batch.manufacturing manager,ff.batch.manufacturing,mrp.group_mrp_manager,crud,"[('company_id', 'in', company_ids)]"
+access_ff_batch_manufacturing_line_user,ff.batch.manufacturing.line user,ff.batch.manufacturing.line,mrp.group_mrp_user,cru,"[('company_id', 'in', company_ids)]"
+access_ff_batch_manufacturing_line_manager,ff.batch.manufacturing.line manager,ff.batch.manufacturing.line,mrp.group_mrp_manager,crud,"[('company_id', 'in', company_ids)]"
