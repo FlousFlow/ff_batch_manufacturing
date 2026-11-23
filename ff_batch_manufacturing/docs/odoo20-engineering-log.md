@@ -23,6 +23,13 @@
   `msgfmt --check` passed (header metadata warnings only) and the focused suite
   completed with 7 tests, 0 failures and 0 errors.
 
+## 2026-11-23 — Batch form cleanup
+
+- Removed the unused Summary notebook page.
+- Kept header locations as the default source for every line, while making
+  location, availability, cost and linked-MO columns `optional="hide"` so users
+  can choose them through the standard Odoo list-column selector.
+
 ## Boundaries
 
 - The one-click action supports simple one-step MOs. Work Orders, serial/lot

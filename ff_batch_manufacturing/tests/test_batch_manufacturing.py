@@ -86,6 +86,14 @@ class TestBatchManufacturing(TransactionCase):
         batch.write({'location_src_id': self.destination.id})
         self.assertEqual(line.location_src_id, alternate)
 
+    def test_line_locations_default_from_batch_header(self):
+        batch = self._batch()
+        line = batch.line_ids
+        self.assertEqual(line.location_src_id, self.source)
+        self.assertEqual(line.location_dest_id, self.destination)
+        self.assertFalse(line.source_location_override)
+        self.assertFalse(line.dest_location_override)
+
     def test_empty_batch_is_rejected(self):
         batch = self.env['ff.batch.manufacturing'].create({
             'picking_type_id': self.picking_type.id,

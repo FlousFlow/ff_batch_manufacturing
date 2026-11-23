@@ -58,30 +58,22 @@
                                     <field name="product_id"/>
                                     <field name="product_qty"/>
                                     <field name="uom_id"/>
-                                    <field name="location_src_id"/>
-                                    <field name="location_dest_id"/>
-                                    <field name="source_location_override" string="Custom Source"/>
-                                    <field name="dest_location_override" string="Custom Destination"/>
-                                    <field name="components_availability_state" widget="badge"
+                                    <field name="location_src_id" optional="hide"/>
+                                    <field name="location_dest_id" optional="hide"/>
+                                    <field name="source_location_override" string="Custom Source" optional="hide"/>
+                                    <field name="dest_location_override" string="Custom Destination" optional="hide"/>
+                                    <field name="components_availability_state" widget="badge" optional="hide"
                                            decoration-success="components_availability_state == 'available'"
                                            decoration-danger="components_availability_state == 'unavailable'"
                                            decoration-warning="components_availability_state in ('expected', 'late')"/>
-                                    <field name="components_availability"/>
-                                    <field name="estimated_cost" widget="monetary"/>
-                                    <field name="actual_cost" widget="monetary"/>
+                                    <field name="components_availability" optional="hide"/>
+                                    <field name="estimated_cost" widget="monetary" optional="hide"/>
+                                    <field name="actual_cost" widget="monetary" optional="hide"/>
                                     <field name="currency_id" column_invisible="True"/>
                                     <button name="action_view_components" type="object" string="View Components" icon="fa-list"/>
-                                    <field name="production_id" string="Manufacturing Order"/>
+                                    <field name="production_id" string="Manufacturing Order" optional="hide"/>
                                 </list>
                             </field>
-                        </page>
-                        <page string="Summary">
-                            <group>
-                                <field name="total_planned_qty"/>
-                                <field name="total_estimated_cost" widget="monetary"/>
-                                <field name="total_actual_cost" widget="monetary"/>
-                                <field name="currency_id" invisible="1"/>
-                            </group>
                         </page>
                         <page string="Notes">
                             <field name="note" placeholder="Add notes for this batch..."/>
