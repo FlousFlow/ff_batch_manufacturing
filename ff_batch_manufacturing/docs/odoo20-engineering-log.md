@@ -40,3 +40,9 @@
 - Native Odoo `mrp:TestProcurement` expectations may differ because this module
   intentionally manages a batch of independent MOs; full production validation
   still requires the target configuration.
+### 2026-11-23 — Reset completed batch without Unbuild
+
+- Decision: the batch reset action now uses Odoo's native manufacturing reset and clears the picked workflow flag so linked MOs and the batch return to Draft without creating `mrp.unbuild` records.
+- Evidence: Odoo 20 `mrp.production.action_reset_to_draft` and `stock.move._action_reset_to_draft` inspected in the local source.
+- Test: 19 addon tests passed, 0 failed, 0 errors.
+- Boundary: this is a workflow-state reset only; it does not reverse the posted stock valuation/quant changes from the completed manufacturing. Users must not use it as an inventory correction.

@@ -176,20 +176,10 @@ class FfBatchManufacturing(models.Model):
             productions = batch.production_ids
             if any(production.state == 'cancel' for production in productions):
                 raise UserError(_('Batch %s contains a cancelled Manufacturing Order and cannot be reset automatically.', batch.display_name))
-            for production in productions.filtered(lambda mo: mo.state == 'done'):
-                unbuild = self.env['mrp.unbuild'].create({
-                    'mo_id': production.id,
-                    'product_id': production.product_id.id,
-                    'product_qty': production.qty_produced or production.product_qty,
-                    'company_id': production.company_id.id,
-                    'location_id': production.location_dest_id.id,
-                    'location_dest_id': production.location_src_id.id,
-                    'lot_ids': [Command.set(production.lot_producing_ids.ids)],
-                })
-                unbuild.action_unbuild()
             productions.action_reset_to_draft()
-            # Unbuild creates compensating stock moves; normalize the MO state only
-            # after the native reset has returned all original moves to draft.
+            # Odoo recomputes a completed MO as in-progress while raw moves remain
+            # marked as picked. Clear that workflow flag so the requested reset
+            # leaves the linked orders in Draft without creating an Unbuild.
             productions.move_raw_ids.write({'picked': False})
             productions.filtered(lambda mo: mo.state != 'cancel').write({
                 'state': 'draft',

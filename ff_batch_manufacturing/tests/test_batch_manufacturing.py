@@ -156,7 +156,7 @@ class TestBatchManufacturing(TransactionCase):
         self.assertEqual(batch.production_ids.state, 'done')
         self.assertEqual(batch.production_ids.product_qty, 1.0)
 
-    def test_reset_done_batch_unbuilds_and_returns_to_draft(self):
+    def test_reset_done_batch_returns_to_draft_without_unbuild(self):
         self.env['stock.quant']._update_available_quantity(self.component, self.source, 2.0)
         batch = self._batch()
         batch.action_confirm_manufacture()
@@ -166,8 +166,8 @@ class TestBatchManufacturing(TransactionCase):
         production = batch.production_ids
         self.assertEqual(batch.state, 'draft')
         self.assertEqual(production.state, 'draft')
-        self.assertEqual(len(production.unbuild_ids), 1)
-        self.assertEqual(production.unbuild_ids.state, 'done')
+        self.assertFalse(production.unbuild_ids)
+        self.assertTrue(all(move.state == 'draft' for move in production.move_raw_ids | production.move_finished_ids))
 
     def test_quantity_only_tracking_completes_multiple_units(self):
         self.assertIn(self.finished.tracking, (False, 'none'))
