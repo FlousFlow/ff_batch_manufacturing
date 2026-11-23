@@ -61,8 +61,11 @@
                                     <field name="uom_id"/>
                                     <field name="location_src_id" optional="hide"/>
                                     <field name="location_dest_id" optional="hide"/>
-                                    <field name="availability_status" string="" widget="state_selection"
-                                           options="{'hide_label': True}" readonly="1" optional="show"/>
+                                    <field name="components_availability_state" column_invisible="True"/>
+                                    <field name="components_availability" optional="show"
+                                           decoration-success="components_availability_state == 'available'"
+                                           decoration-warning="components_availability_state in ('expected', 'available')"
+                                           decoration-danger="components_availability_state in ('late', 'unavailable')"/>
                                     <field name="estimated_cost" widget="monetary" optional="hide"/>
                                     <field name="currency_id" column_invisible="True"/>
                                     <button name="action_view_components" type="object" string="View Components" icon="fa-list"/>

@@ -209,9 +209,6 @@ class FfBatchManufacturingLine(models.Model):
         ('available', 'Available'), ('expected', 'Expected'), ('late', 'Late'), ('unavailable', 'Not Available'),
     ], string='Component Availability', compute='_compute_availability')
     components_availability = fields.Char(string='Availability', compute='_compute_availability')
-    availability_status = fields.Selection([
-        ('done', 'Available'), ('blocked', 'Not Available'),
-    ], string='Availability Status', compute='_compute_availability')
     estimated_cost = fields.Monetary(string='Estimated Cost', compute='_compute_costs', store=True)
     actual_cost = fields.Monetary(string='Actual Cost', compute='_compute_costs', store=True)
     currency_id = fields.Many2one(related='company_id.currency_id', readonly=True)
@@ -237,14 +234,10 @@ class FfBatchManufacturingLine(models.Model):
             if production and production.state not in ('draft', 'cancel', 'done'):
                 line.components_availability = production.components_availability
                 line.components_availability_state = production.components_availability_state
-                line.availability_status = (
-                    'blocked' if production.components_availability_state in ('late', 'unavailable') else 'done'
-                )
                 continue
             if not production:
                 line.components_availability = False
                 line.components_availability_state = False
-                line.availability_status = False
                 continue
             unavailable = False
             for move in production.move_raw_ids:
@@ -255,7 +248,6 @@ class FfBatchManufacturingLine(models.Model):
                     break
             line.components_availability_state = 'unavailable' if unavailable else 'available'
             line.components_availability = _('Not Available') if unavailable else _('Available')
-            line.availability_status = 'blocked' if unavailable else 'done'
 
     @api.onchange('batch_id')
     def _onchange_batch_id(self):
