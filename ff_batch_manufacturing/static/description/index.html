@@ -4,10 +4,14 @@
   <p>Flous Flow Batch Manufacturing creates one controlled batch sheet for
   multiple products while keeping one independent native Odoo Manufacturing
   Order per line.</p>
+  <p>Use it when a production team needs to prepare several finished products
+  together, review each component list independently, and complete eligible
+  one-step manufacturing orders from one screen.</p>
   <h3>Features</h3>
   <ul>
     <li>Independent native Manufacturing Order for every saved line.</li>
     <li>Review and customize a line's components without changing the master BoM.</li>
+    <li>Edited component quantities are consumed for that Manufacturing Order only.</li>
     <li>Scale the current component moves when a draft quantity changes.</li>
     <li>Header source and destination locations populate every line automatically.</li>
     <li>Native Odoo quantity-at-date availability indicator.</li>
@@ -19,5 +23,17 @@
     <li>Add products with standard manufacturing BoMs and save the lines.</li>
     <li>Review components, then use Confirm &amp; Manufacture for eligible simple orders.</li>
   </ol>
+  <h3>Configuration and permissions</h3>
+  <ul>
+    <li>Requires Odoo 20 Community and the Manufacturing application.</li>
+    <li>Products must have an active normal Manufacturing BoM.</li>
+    <li>Manufacturing users can create and execute batches according to their standard Odoo permissions.</li>
+    <li>Only Manufacturing Managers can reset a completed batch to Draft.</li>
+  </ul>
+  <h3>Important limits</h3>
+  <p>One-click completion is intended for simple one-step Manufacturing Orders.
+  Work Orders, serial or lot dialogs, multi-step pickings, backorders, and other
+  native Odoo wizards remain in the standard Odoo screens. Resetting to Draft is
+  a workflow reset and does not reverse posted stock valuation.</p>
   <p><strong>Odoo 20 Community | Dependency: Manufacturing (MRP)</strong></p>
 </section>

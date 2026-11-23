@@ -10,7 +10,7 @@ uses its own native Odoo Manufacturing Order, so components can be reviewed and
 customized independently without changing the master BoM. Confirm & Manufacture
 executes eligible simple manufacturing orders through native MRP workflows.
     """,
-    'version': '20.0.1.0.0',
+    'version': '20.0.1.0.1',
     'category': 'Manufacturing/Manufacturing',
     'author': 'Flous Flow',
     'website': 'https://flousflow.com',

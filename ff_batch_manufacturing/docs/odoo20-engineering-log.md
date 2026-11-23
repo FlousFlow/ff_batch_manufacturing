@@ -58,3 +58,13 @@
 - Removed unused custom availability and component-customization fields; the form now relies on Odoo's native quantity-at-date widget.
 - Removed the unused `sale` dependency and corrected documentation that still described reset as blocked after completion.
 - Gave hidden widget bridge fields distinct labels to eliminate duplicate-label registry warnings.
+
+### 2026-11-24 — Odoo Apps packaging
+
+- Verified the dedicated repository layout, Odoo `20.0` branch, LGPL-3 license,
+  manifest metadata, English Apps description, icon path, and SSH repository URL
+  against the current Odoo Apps vendor guidance.
+- Replaced the Apps banner with the supplied Flous Flow Batch Manufacturing
+  artwork and expanded the presentation page with workflow, permissions,
+  compatibility and limits.
+- Bumped the module version to `20.0.1.0.1`; no database schema change was made.
