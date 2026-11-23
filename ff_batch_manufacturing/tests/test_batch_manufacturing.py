@@ -1,6 +1,6 @@
 from odoo import Command
-from odoo.exceptions import UserError, ValidationError
-from odoo.tests.common import TransactionCase
+from odoo.exceptions import AccessError, UserError, ValidationError
+from odoo.tests.common import TransactionCase, new_test_user
 
 
 class TestBatchManufacturing(TransactionCase):
@@ -184,6 +184,36 @@ class TestBatchManufacturing(TransactionCase):
         self.assertEqual(production.state, 'draft')
         self.assertFalse(production.unbuild_ids)
         self.assertTrue(all(move.state == 'draft' for move in production.move_raw_ids | production.move_finished_ids))
+
+    def test_reset_to_draft_requires_manufacturing_manager(self):
+        user = new_test_user(
+            self.env,
+            login='ff_batch_manufacturing_user',
+            groups='base.group_user,mrp.group_mrp_user',
+        )
+        batch = self._batch().with_user(user)
+
+        with self.assertRaises(UserError):
+            batch.action_reset_to_draft()
+
+    def test_batch_records_are_isolated_by_company(self):
+        company_b = self.env['res.company'].create({'name': 'FF Batch Security Company'})
+        user = new_test_user(
+            self.env,
+            login='ff_batch_company_user',
+            groups='base.group_user,mrp.group_mrp_user',
+            company_id=company_b.id,
+            company_ids=[company_b.id],
+        )
+        batch = self.env['ff.batch.manufacturing'].create({
+            'company_id': self.company.id,
+            'picking_type_id': self.picking_type.id,
+            'location_src_id': self.source.id,
+            'location_dest_id': self.destination.id,
+        })
+
+        with self.assertRaises(AccessError):
+            batch.with_user(user).read()
 
     def test_quantity_only_tracking_completes_multiple_units(self):
         self.assertIn(self.finished.tracking, (False, 'none'))

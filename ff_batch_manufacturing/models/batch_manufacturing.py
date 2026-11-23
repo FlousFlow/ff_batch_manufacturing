@@ -6,7 +6,7 @@ from odoo.tools.float_utils import float_is_zero
 class FfBatchManufacturing(models.Model):
     _name = 'ff.batch.manufacturing'
     _description = 'Batch Manufacturing Sheet'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ('mail.thread', 'mail.activity.mixin')
     _order = 'manufacturing_date desc, id desc'
 
     name = fields.Char(string='Batch Reference', default='New', readonly=True, copy=False, tracking=True)

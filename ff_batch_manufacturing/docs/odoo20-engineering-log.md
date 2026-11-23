@@ -59,6 +59,27 @@
 - Removed the unused `sale` dependency and corrected documentation that still described reset as blocked after completion.
 - Gave hidden widget bridge fields distinct labels to eliminate duplicate-label registry warnings.
 
+### 2026-11-24 — Dependency audit correction
+
+- Restored the explicit `sale` dependency after verifying that Odoo's
+  `simple_qty_at_date_widget` is registered by the Sales assets while the module
+  intentionally reuses that standard availability indicator.
+- This prevents a clean Manufacturing-only database from loading a view that
+  references an unavailable client widget.
+
+### 2026-11-24 — Expanded audit
+
+- Static checks: manifest parsing, XML validation, Python compilation and
+  translation `msgfmt --check` completed; Ruff only reports the normal Odoo
+  package-import/manifest patterns.
+- Fresh-install check: a disposable Odoo 20 database installed the module and
+  its dependencies successfully, then was removed.
+- Focused suite: 22 tests passed, 0 failures, 0 errors, including manager-only
+  reset and cross-company record isolation checks.
+- Remaining risk: the requested reset-to-Draft behavior intentionally does not
+  reverse posted stock valuation or quants; this is documented and should not
+  be used as an inventory correction.
+
 ### 2026-11-24 — Odoo Apps packaging
 
 - Verified the dedicated repository layout, Odoo `20.0` branch, LGPL-3 license,

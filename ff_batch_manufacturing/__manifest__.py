@@ -17,7 +17,9 @@ executes eligible simple manufacturing orders through native MRP workflows.
     'support': 'support@flousflow.com',
     'license': 'LGPL-3',
     'images': ['static/description/banner.jpg'],
-    'depends': ['mrp'],
+    # The standard quantity-at-date widget is registered by Sales and reused
+    # here for the native availability indicator.
+    'depends': ['mrp', 'sale'],
     'data': [
         'security/ir.access.csv',
         'data/ff_batch_manufacturing_data.xml',
