@@ -1,5 +1,5 @@
 from odoo import Command
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 from odoo.tests.common import TransactionCase
 
 
@@ -99,6 +99,23 @@ class TestBatchManufacturing(TransactionCase):
         })
         with self.assertRaises(UserError):
             batch.action_confirm_manufacture()
+
+    def test_product_without_standard_bom_is_rejected(self):
+        product = self.env['product.product'].create({
+            'name': 'FF Batch Product Without BoM', 'type': 'consu', 'is_storable': True,
+        })
+        batch = self.env['ff.batch.manufacturing'].create({
+            'picking_type_id': self.picking_type.id,
+            'location_src_id': self.source.id,
+            'location_dest_id': self.destination.id,
+        })
+        with self.assertRaises(ValidationError):
+            self.env['ff.batch.manufacturing.line'].create({
+                'batch_id': batch.id,
+                'product_id': product.id,
+                'product_qty': 1.0,
+                'uom_id': product.uom_id.id,
+            })
 
     def test_confirm_manufacture_completes_native_mo(self):
         self.env['stock.quant']._update_available_quantity(self.component, self.source, 2.0)

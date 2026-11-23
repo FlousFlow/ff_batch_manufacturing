@@ -183,7 +183,8 @@ class FfBatchManufacturingLine(models.Model):
     company_id = fields.Many2one(related='batch_id.company_id', store=True, readonly=True)
     product_id = fields.Many2one(
         'product.product', string='Product', required=True,
-        domain="[('type', '=', 'consu')]", check_company=True,
+        domain="[('type', '=', 'consu'), ('bom_ids.type', '=', 'normal'), ('bom_ids.active', '=', True)]",
+        check_company=True,
     )
     product_qty = fields.Float(string='Quantity to Manufacture', required=True, default=1.0, digits='Product Unit')
     uom_id = fields.Many2one('uom.uom', string='Unit of Measure', required=True)
@@ -263,6 +264,8 @@ class FfBatchManufacturingLine(models.Model):
                 vals.setdefault('location_src_id', batch.location_src_id.id)
                 vals.setdefault('location_dest_id', batch.location_dest_id.id)
         lines = super().create(vals_list)
+        for line in lines:
+            line._ensure_standard_bom()
         lines._sync_productions()
         return lines
 
@@ -274,6 +277,7 @@ class FfBatchManufacturingLine(models.Model):
         if self.env.context.get('ff_batch_sync'):
             return result
         if product_changed:
+            self._ensure_standard_bom()
             self._sync_productions(regenerate=True)
         elif quantity_changed:
             self._sync_productions(scale_quantity=True)
@@ -333,6 +337,21 @@ class FfBatchManufacturingLine(models.Model):
             raise UserError(_('Save the batch line before manufacturing.'))
         if not self.bom_id:
             raise UserError(_('Product %s has no standard manufacturing BoM.', self.product_id.display_name))
+
+    def _ensure_standard_bom(self):
+        for line in self:
+            if not line.product_id:
+                continue
+            bom = self.env['mrp.bom']._bom_find(
+                line.product_id,
+                picking_type=line.batch_id.picking_type_id,
+                company_id=line.company_id.id,
+                bom_type='normal',
+            ).get(line.product_id)
+            if not bom:
+                raise ValidationError(_(
+                    'Only products with a standard manufacturing BoM can be added to a batch.'
+                ))
 
     def action_view_components(self):
         self.ensure_one()
