@@ -28,16 +28,18 @@ The package includes the supplied Flous Flow/Odoo 20 cover artwork in
 ## Important behavior
 
 - Repeated products on two lines create two independent Manufacturing Orders.
+- Components edited from **View Components** are consumed for that MO only; the
+  source BoM remains unchanged.
 - Changing a line quantity scales its current component moves, including manual
   additions, removals and replacements, without reloading the master BoM.
 - Header source and destination locations populate every line automatically.
-- Availability is informational and does not add a custom negative-stock block.
+- Availability uses Odoo's native quantity-at-date indicator.
 - Work Orders, serial/lot wizards, multi-step pickings and other mandatory
   native workflows are not bypassed; unsupported one-click cases return an
   actionable Odoo error and remain incomplete rather than being falsely marked
   Done.
-- Reset is restricted to Manufacturing Managers and is blocked after a linked
-  MO is completed.
+- Reset is restricted to Manufacturing Managers and returns linked MOs to Draft
+  without creating an Unbuild. It does not reverse posted stock valuation.
 
 ## Requirements
 

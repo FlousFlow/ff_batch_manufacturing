@@ -52,3 +52,9 @@
 - Decision: the batch completion flow now treats raw-material quantities edited from the native linked MO form as this MO's consumed quantities, skips the native BoM-vs-consumption warning for this controlled flow, and leaves the original BoM unchanged.
 - Test: added an edited-component scenario; 20 addon tests passed, 0 failed, 0 errors.
 - Boundary: stock availability still follows the normal Odoo stock moves; editing the MO can intentionally consume a quantity different from the source BoM.
+
+### 2026-11-23 — Cleanup audit
+
+- Removed unused custom availability and component-customization fields; the form now relies on Odoo's native quantity-at-date widget.
+- Removed the unused `sale` dependency and corrected documentation that still described reset as blocked after completion.
+- Gave hidden widget bridge fields distinct labels to eliminate duplicate-label registry warnings.

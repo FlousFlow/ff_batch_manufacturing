@@ -86,31 +86,9 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: ff_batch_manufacturing
-#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__components_availability
-msgid "Availability"
-msgstr "التوافر"
-
-#. module: ff_batch_manufacturing
-#. odoo-python
-#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
-#: model:ir.model.fields.selection,name:ff_batch_manufacturing.selection__ff_batch_manufacturing_line__components_availability_state__available
-msgid "Available"
-msgstr "متاح"
-
-#. module: ff_batch_manufacturing
 #: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__batch_id
 msgid "Batch"
 msgstr "الدفعة"
-
-#. module: ff_batch_manufacturing
-#. odoo-python
-#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
-msgid ""
-"Batch %s cannot be reset because a linked Manufacturing Order is completed. "
-"Reverse the native stock operation first."
-msgstr ""
-"لا يمكن إعادة الدفعة %s إلى المسودة لأن أمر تصنيع مرتبطًا بها مكتمل. اعكس "
-"عملية المخزون الأصلية أولًا."
 
 #. module: ff_batch_manufacturing
 #. odoo-python
@@ -152,11 +130,6 @@ msgid "Company"
 msgstr "الشركة"
 
 #. module: ff_batch_manufacturing
-#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__components_availability_state
-msgid "Component Availability"
-msgstr "توافر المكونات"
-
-#. module: ff_batch_manufacturing
 #: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__location_src_id
 #: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__location_src_id
 msgid "Component Source Location"
@@ -196,11 +169,6 @@ msgid "Currency"
 msgstr "العملة"
 
 #. module: ff_batch_manufacturing
-#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__components_customized
-msgid "Customized Components"
-msgstr "مكونات مخصصة"
-
-#. module: ff_batch_manufacturing
 #: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__display_name
 #: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__display_name
 msgid "Display Name"
@@ -226,11 +194,6 @@ msgstr "التكلفة التقديرية"
 #: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
 msgid "Every manufacturing line needs a positive quantity and a product."
 msgstr "يجب أن يحتوي كل سطر تصنيع على منتج وكمية موجبة."
-
-#. module: ff_batch_manufacturing
-#: model:ir.model.fields.selection,name:ff_batch_manufacturing.selection__ff_batch_manufacturing_line__components_availability_state__expected
-msgid "Expected"
-msgstr "متوقع"
 
 #. module: ff_batch_manufacturing
 #: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__location_dest_id
@@ -306,11 +269,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__write_date
 msgid "Last Updated on"
 msgstr ""
-
-#. module: ff_batch_manufacturing
-#: model:ir.model.fields.selection,name:ff_batch_manufacturing.selection__ff_batch_manufacturing_line__components_availability_state__late
-msgid "Late"
-msgstr "متأخر"
 
 #. module: ff_batch_manufacturing
 #: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__manufacturing_date
@@ -417,13 +375,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__activity_type_id
 msgid "Next Activity Type"
 msgstr ""
-
-#. module: ff_batch_manufacturing
-#. odoo-python
-#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
-#: model:ir.model.fields.selection,name:ff_batch_manufacturing.selection__ff_batch_manufacturing_line__components_availability_state__unavailable
-msgid "Not Available"
-msgstr "غير متاح"
 
 #. module: ff_batch_manufacturing
 #: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__note

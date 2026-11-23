@@ -1,6 +1,6 @@
 from odoo import Command, _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
-from odoo.tools.float_utils import float_compare, float_is_zero
+from odoo.tools.float_utils import float_is_zero
 
 
 class FfBatchManufacturing(models.Model):
@@ -215,22 +215,17 @@ class FfBatchManufacturingLine(models.Model):
     location_src_id = fields.Many2one('stock.location', string='Component Source Location', required=True, check_company=True)
     location_dest_id = fields.Many2one('stock.location', string='Finished Product Destination', required=True, check_company=True)
     production_id = fields.Many2one('mrp.production', string='Manufacturing Order', readonly=True, copy=False, ondelete='restrict')
-    components_availability_state = fields.Selection([
-        ('available', 'Available'), ('expected', 'Expected'), ('late', 'Late'), ('unavailable', 'Not Available'),
-    ], string='Component Availability', compute='_compute_availability')
-    components_availability = fields.Char(string='Availability', compute='_compute_availability')
     display_qty_widget = fields.Boolean(compute='_compute_qty_at_date_widget')
     qty_available_today = fields.Float(compute='_compute_qty_at_date_widget')
     virtual_available_at_date = fields.Float(compute='_compute_qty_at_date_widget')
     scheduled_date = fields.Datetime(compute='_compute_qty_at_date_widget')
-    product_uom_qty = fields.Float(related='product_qty', readonly=True)
-    product_uom_id = fields.Many2one(related='uom_id', readonly=True)
+    product_uom_qty = fields.Float(string='Quantity for Availability Widget', related='product_qty', readonly=True)
+    product_uom_id = fields.Many2one(string='Unit for Availability Widget', related='uom_id', readonly=True)
     qty_delivered = fields.Float(compute='_compute_qty_at_date_widget')
     estimated_cost = fields.Monetary(string='Estimated Cost', compute='_compute_costs', store=True)
     actual_cost = fields.Monetary(string='Actual Cost', compute='_compute_costs', store=True)
     currency_id = fields.Many2one(related='company_id.currency_id', readonly=True)
     manufacturing_state = fields.Selection(related='production_id.state', string='Manufacturing Status', readonly=True)
-    components_customized = fields.Boolean(string='Customized Components', copy=False)
 
     @api.depends('product_id', 'product_qty', 'uom_id', 'production_id.move_raw_ids.product_id', 'production_id.move_raw_ids.product_uom_qty', 'location_src_id')
     def _compute_costs(self):
@@ -242,29 +237,6 @@ class FfBatchManufacturingLine(models.Model):
             line.actual_cost = 0.0
             if line.production_id and 'value' in self.env['stock.move']._fields:
                 line.actual_cost = abs(sum(line.production_id.move_raw_ids.filtered(lambda move: move.state == 'done').mapped('value')))
-
-    @api.depends('production_id.state', 'production_id.components_availability', 'production_id.components_availability_state', 'production_id.move_raw_ids', 'location_src_id')
-    def _compute_availability(self):
-        Quant = self.env['stock.quant']
-        for line in self:
-            production = line.production_id
-            if production and production.state not in ('draft', 'cancel', 'done'):
-                line.components_availability = production.components_availability
-                line.components_availability_state = production.components_availability_state
-                continue
-            if not production:
-                line.components_availability = False
-                line.components_availability_state = False
-                continue
-            unavailable = False
-            for move in production.move_raw_ids:
-                available = Quant._get_available_quantity(move.product_id, line.location_src_id, strict=True)
-                required = move.product_id.uom_id._compute_quantity(move.product_qty, move.product_id.uom_id)
-                if float_compare(available, required, precision_rounding=0.00001) < 0:
-                    unavailable = True
-                    break
-            line.components_availability_state = 'unavailable' if unavailable else 'available'
-            line.components_availability = _('Not Available') if unavailable else _('Available')
 
     @api.depends('product_id', 'product_qty', 'location_src_id', 'batch_id.state', 'batch_id.manufacturing_date')
     def _compute_qty_at_date_widget(self):
