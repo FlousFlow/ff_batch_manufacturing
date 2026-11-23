@@ -276,7 +276,7 @@ msgstr ""
 #: model_terms:ir.actions.act_window,help:ff_batch_manufacturing.ff_batch_manufacturing_action
 msgid ""
 "Group several independent manufacturing orders into one controlled batch."
-msgstr ""
+msgstr "اجمع عدة أوامر تصنيع مستقلة في دفعة واحدة منظمة."
 
 #. module: ff_batch_manufacturing
 #: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__has_message
