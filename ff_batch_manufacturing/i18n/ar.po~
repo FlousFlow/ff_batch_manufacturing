@@ -1,0 +1,258 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ff_batch_manufacturing\n"
+"Language: ar\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#. module: ff_batch_manufacturing
+#: model:ir.actions.act_window,name:ff_batch_manufacturing.ff_batch_manufacturing_action
+msgid "Batch Manufacturing"
+msgstr "التصنيع على دفعات"
+
+#. module: ff_batch_manufacturing
+msgid "Batch Manufacturing Sheet"
+msgstr "ورقة التصنيع على دفعات"
+
+#. module: ff_batch_manufacturing
+msgid "Batch Reference"
+msgstr "مرجع الدفعة"
+
+#. module: ff_batch_manufacturing
+msgid "Manufacturing Date"
+msgstr "تاريخ التصنيع"
+
+#. module: ff_batch_manufacturing
+msgid "Manufacturing Operation Type"
+msgstr "نوع عملية التصنيع"
+
+#. module: ff_batch_manufacturing
+msgid "Component Source Location"
+msgstr "موقع مصدر المكونات"
+
+#. module: ff_batch_manufacturing
+msgid "Finished Product Destination Location"
+msgstr "موقع وجهة المنتجات النهائية"
+
+#. module: ff_batch_manufacturing
+msgid "Manufacturing Lines"
+msgstr "سطور التصنيع"
+
+#. module: ff_batch_manufacturing
+msgid "Confirm & Manufacture"
+msgstr "تأكيد وتصنيع"
+
+#. module: ff_batch_manufacturing
+msgid "Reset to Draft"
+msgstr "إرجاع إلى المسودة"
+
+#. module: ff_batch_manufacturing
+msgid "View Components"
+msgstr "عرض المكونات"
+
+#. module: ff_batch_manufacturing
+msgid "Quantity to Manufacture"
+msgstr "كمية التصنيع"
+
+#. module: ff_batch_manufacturing
+msgid "Standard BoM"
+msgstr "قائمة المواد القياسية"
+
+#. module: ff_batch_manufacturing
+msgid "Component Availability"
+msgstr "توافر المكونات"
+
+#. module: ff_batch_manufacturing
+msgid "Manufacturing Order"
+msgstr "أمر التصنيع"
+
+#. module: ff_batch_manufacturing
+msgid "Manufacturing Status"
+msgstr "حالة التصنيع"
+
+#. module: ff_batch_manufacturing
+msgid "Available"
+msgstr "متاح"
+
+#. module: ff_batch_manufacturing
+msgid "Not Available"
+msgstr "غير متاح"
+
+#. module: ff_batch_manufacturing
+msgid "Only a draft batch can be confirmed and manufactured."
+msgstr "يمكن تأكيد وتصنيع الدفعة وهي في حالة المسودة فقط."
+
+#. module: ff_batch_manufacturing
+msgid "Add at least one manufacturing line before confirming the batch."
+msgstr "أضف سطر تصنيع واحدًا على الأقل قبل تأكيد الدفعة."
+
+#. module: ff_batch_manufacturing
+msgid "Manufacturing quantity must be greater than zero."
+msgstr "يجب أن تكون كمية التصنيع أكبر من صفر."
+
+#. module: ff_batch_manufacturing
+msgid "Only Manufacturing Managers can reset a batch."
+msgstr "مديرو التصنيع فقط يمكنهم إرجاع الدفعة إلى المسودة."
+
+#. module: ff_batch_manufacturing
+msgid "Create your first batch manufacturing sheet"
+msgstr "أنشئ أول ورقة تصنيع على دفعات"
+
+#. module: ff_batch_manufacturing
+msgid "Company"
+msgstr "الشركة"
+
+#. module: ff_batch_manufacturing
+msgid "Responsible"
+msgstr "المسؤول"
+
+#. module: ff_batch_manufacturing
+msgid "Notes"
+msgstr "ملاحظات"
+
+#. module: ff_batch_manufacturing
+msgid "Currency"
+msgstr "العملة"
+
+#. module: ff_batch_manufacturing
+msgid "Number of Lines"
+msgstr "عدد السطور"
+
+#. module: ff_batch_manufacturing
+msgid "Total Planned Quantity"
+msgstr "إجمالي الكمية المخططة"
+
+#. module: ff_batch_manufacturing
+msgid "Total Estimated Cost"
+msgstr "إجمالي التكلفة التقديرية"
+
+#. module: ff_batch_manufacturing
+msgid "Total Actual Cost"
+msgstr "إجمالي التكلفة الفعلية"
+
+#. module: ff_batch_manufacturing
+msgid "Product"
+msgstr "المنتج"
+
+#. module: ff_batch_manufacturing
+msgid "Unit of Measure"
+msgstr "وحدة القياس"
+
+#. module: ff_batch_manufacturing
+msgid "Custom Component Location"
+msgstr "موقع مكونات مخصص"
+
+#. module: ff_batch_manufacturing
+msgid "Custom Finished Location"
+msgstr "موقع منتجات نهائية مخصص"
+
+#. module: ff_batch_manufacturing
+msgid "Customized Components"
+msgstr "مكونات مخصصة"
+
+#. module: ff_batch_manufacturing
+msgid "Availability"
+msgstr "التوافر"
+
+#. module: ff_batch_manufacturing
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: ff_batch_manufacturing
+msgid "Done"
+msgstr "تم"
+
+#. module: ff_batch_manufacturing
+msgid "Expected"
+msgstr "متوقع"
+
+#. module: ff_batch_manufacturing
+msgid "Late"
+msgstr "متأخر"
+
+#. module: ff_batch_manufacturing
+msgid "Every manufacturing line needs a positive quantity and a product."
+msgstr "يجب أن يحتوي كل سطر تصنيع على منتج وكمية موجبة."
+
+#. module: ff_batch_manufacturing
+msgid "The line company must match the batch company."
+msgstr "يجب أن تتطابق شركة السطر مع شركة الدفعة."
+
+#. module: ff_batch_manufacturing
+msgid "Save the batch line before manufacturing."
+msgstr "احفظ سطر الدفعة قبل بدء التصنيع."
+
+#. module: ff_batch_manufacturing
+msgid "Product %s has no standard manufacturing BoM."
+msgstr "المنتج %s ليس له قائمة مواد تصنيع قياسية."
+
+#. module: ff_batch_manufacturing
+msgid "The operation type must be a Manufacturing operation type."
+msgstr "يجب أن يكون نوع العملية نوع عملية تصنيع."
+
+#. module: ff_batch_manufacturing
+msgid "Manufacturing locations must be internal stock locations."
+msgstr "يجب أن تكون مواقع التصنيع مواقع مخزون داخلية."
+
+#. module: ff_batch_manufacturing
+msgid "The selected location belongs to another company."
+msgstr "الموقع المحدد تابع لشركة أخرى."
+
+#. module: ff_batch_manufacturing
+msgid "Manufacturing order %s has work orders. Complete it through the native Work Orders flow."
+msgstr "أمر التصنيع %s يحتوي على أوامر عمل. أكمله من خلال مسار أوامر العمل الأصلي."
+
+#. module: ff_batch_manufacturing
+msgid "Manufacturing order %s requires an additional native Odoo step before it can be completed."
+msgstr "أمر التصنيع %s يحتاج إلى خطوة إضافية أصلية في أودو قبل إتمامه."
+
+#. module: ff_batch_manufacturing
+msgid "Manufacturing order %s was not completed."
+msgstr "لم يكتمل أمر التصنيع %s."
+
+#. module: ff_batch_manufacturing
+msgid "Batch %s cannot be reset because a linked Manufacturing Order is completed. Reverse the native stock operation first."
+msgstr "لا يمكن إعادة الدفعة %s إلى المسودة لأن أمر تصنيع مرتبطًا بها مكتمل. اعكس عملية المخزون الأصلية أولًا."
+
+#. module: ff_batch_manufacturing
+msgid "Batch %s contains a cancelled Manufacturing Order and cannot be reset automatically."
+msgstr "تحتوي الدفعة %s على أمر تصنيع ملغى ولا يمكن إعادتها إلى المسودة تلقائيًا."
+
+#. module: ff_batch_manufacturing
+msgid "Add notes for this batch..."
+msgstr "أضف ملاحظات لهذه الدفعة..."
+
+#. module: ff_batch_manufacturing
+msgid "Summary"
+msgstr "الملخص"
+
+#. module: ff_batch_manufacturing
+msgid "Custom Source"
+msgstr "مصدر مخصص"
+
+#. module: ff_batch_manufacturing
+msgid "Custom Destination"
+msgstr "وجهة مخصصة"
+
+#. module: ff_batch_manufacturing
+msgid "Manufacturing Orders"
+msgstr "أوامر التصنيع"
+
+#. module: ff_batch_manufacturing
+msgid "Batch Manufacturing Line"
+msgstr "سطر تصنيع على دفعات"
+
+#. module: ff_batch_manufacturing
+msgid "Finished Product Destination"
+msgstr "وجهة المنتج النهائي"
+
+#. module: ff_batch_manufacturing
+msgid "Estimated Cost"
+msgstr "التكلفة التقديرية"
+
+#. module: ff_batch_manufacturing
+msgid "Actual Cost"
+msgstr "التكلفة الفعلية"
+
+#. module: ff_batch_manufacturing
+msgid "Save the line before opening its components."
+msgstr "احفظ السطر قبل فتح مكوناته."

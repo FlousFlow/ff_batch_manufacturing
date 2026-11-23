@@ -14,6 +14,15 @@
   and focused tests.
 - Focused local test suite: 6 tests, 0 failures, 0 errors.
 
+## 2026-11-23 — Arabic translation coverage
+
+- Audited Python labels, validation messages, selection values and XML view
+  labels against `i18n/ar.po`; added the missing Arabic entries for the full
+  batch form, line columns, summary, statuses and error messages.
+- Reloaded the module with the Arabic locale on the local Odoo 20 database;
+  `msgfmt --check` passed (header metadata warnings only) and the focused suite
+  completed with 7 tests, 0 failures and 0 errors.
+
 ## Boundaries
 
 - The one-click action supports simple one-step MOs. Work Orders, serial/lot

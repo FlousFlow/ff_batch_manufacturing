@@ -1,98 +1,622 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ff_batch_manufacturing\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-23 15:58+0000\n"
 "Language: ar\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 
 #. module: ff_batch_manufacturing
-#: model:ir.actions.act_window,name:ff_batch_manufacturing.ff_batch_manufacturing_action
-msgid "Batch Manufacturing"
-msgstr "التصنيع على دفعات"
+#: model:ir.module.module,description:base.module_ff_batch_manufacturing
+msgid ""
+"\n"
+"Flous Flow Batch Manufacturing\n"
+"==============================\n"
+"\n"
+"Create one batch sheet containing multiple manufacturing products. Every "
+"line\n"
+"uses its own native Odoo Manufacturing Order, so components can be reviewed "
+"and\n"
+"customized independently without changing the master BoM. Confirm & "
+"Manufacture\n"
+"executes eligible simple manufacturing orders through native MRP workflows.\n"
+msgstr ""
 
 #. module: ff_batch_manufacturing
-msgid "Batch Manufacturing Sheet"
-msgstr "ورقة التصنيع على دفعات"
+#: model:ir.model.fields,help:ff_batch_manufacturing.field_ff_batch_manufacturing_line__manufacturing_state
+msgid ""
+" * Draft: The MO is not confirmed yet.\n"
+" * Confirmed: The MO is confirmed, the stock rules and the reordering of the "
+"components are trigerred.\n"
+" * In Progress: The production has started (on the MO or on the WO).\n"
+" * To Close: The production is done, the MO has to be closed.\n"
+" * Done: The MO is closed, the stock moves are posted. \n"
+" * Cancelled: The MO has been cancelled, can't be confirmed anymore."
+msgstr ""
 
 #. module: ff_batch_manufacturing
-msgid "Batch Reference"
-msgstr "مرجع الدفعة"
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__message_needaction
+msgid "Action Needed"
+msgstr ""
 
 #. module: ff_batch_manufacturing
-msgid "Manufacturing Date"
-msgstr "تاريخ التصنيع"
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__activity_ids
+msgid "Activities"
+msgstr ""
 
 #. module: ff_batch_manufacturing
-msgid "Manufacturing Operation Type"
-msgstr "نوع عملية التصنيع"
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
 
 #. module: ff_batch_manufacturing
-msgid "Component Source Location"
-msgstr "موقع مصدر المكونات"
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__activity_plans_ids
+msgid "Activity Plans"
+msgstr ""
 
 #. module: ff_batch_manufacturing
-msgid "Finished Product Destination Location"
-msgstr "موقع وجهة المنتجات النهائية"
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__activity_state
+msgid "Activity State"
+msgstr ""
 
 #. module: ff_batch_manufacturing
-msgid "Manufacturing Lines"
-msgstr "سطور التصنيع"
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
 
 #. module: ff_batch_manufacturing
-msgid "Confirm & Manufacture"
-msgstr "تأكيد وتصنيع"
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__actual_cost
+msgid "Actual Cost"
+msgstr "التكلفة الفعلية"
 
 #. module: ff_batch_manufacturing
-msgid "Reset to Draft"
-msgstr "إرجاع إلى المسودة"
-
-#. module: ff_batch_manufacturing
-msgid "View Components"
-msgstr "عرض المكونات"
-
-#. module: ff_batch_manufacturing
-msgid "Quantity to Manufacture"
-msgstr "كمية التصنيع"
-
-#. module: ff_batch_manufacturing
-msgid "Standard BoM"
-msgstr "قائمة المواد القياسية"
-
-#. module: ff_batch_manufacturing
-msgid "Component Availability"
-msgstr "توافر المكونات"
-
-#. module: ff_batch_manufacturing
-msgid "Manufacturing Order"
-msgstr "أمر التصنيع"
-
-#. module: ff_batch_manufacturing
-msgid "Manufacturing Status"
-msgstr "حالة التصنيع"
-
-#. module: ff_batch_manufacturing
-msgid "Available"
-msgstr "متاح"
-
-#. module: ff_batch_manufacturing
-msgid "Not Available"
-msgstr "غير متاح"
-
-#. module: ff_batch_manufacturing
-msgid "Only a draft batch can be confirmed and manufactured."
-msgstr "يمكن تأكيد وتصنيع الدفعة وهي في حالة المسودة فقط."
-
-#. module: ff_batch_manufacturing
+#. odoo-python
+#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
 msgid "Add at least one manufacturing line before confirming the batch."
 msgstr "أضف سطر تصنيع واحدًا على الأقل قبل تأكيد الدفعة."
 
 #. module: ff_batch_manufacturing
+#: model_terms:ir.ui.view,arch_db:ff_batch_manufacturing.ff_batch_manufacturing_view_form
+msgid "Add notes for this batch..."
+msgstr "أضف ملاحظات لهذه الدفعة..."
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__components_availability
+msgid "Availability"
+msgstr "التوافر"
+
+#. module: ff_batch_manufacturing
+#. odoo-python
+#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
+#: model:ir.model.fields.selection,name:ff_batch_manufacturing.selection__ff_batch_manufacturing_line__components_availability_state__available
+msgid "Available"
+msgstr "متاح"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__batch_id
+msgid "Batch"
+msgstr "الدفعة"
+
+#. module: ff_batch_manufacturing
+#. odoo-python
+#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
+msgid ""
+"Batch %s cannot be reset because a linked Manufacturing Order is completed. "
+"Reverse the native stock operation first."
+msgstr ""
+"لا يمكن إعادة الدفعة %s إلى المسودة لأن أمر تصنيع مرتبطًا بها مكتمل. اعكس "
+"عملية المخزون الأصلية أولًا."
+
+#. module: ff_batch_manufacturing
+#. odoo-python
+#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
+msgid ""
+"Batch %s contains a cancelled Manufacturing Order and cannot be reset "
+"automatically."
+msgstr ""
+"تحتوي الدفعة %s على أمر تصنيع ملغى ولا يمكن إعادتها إلى المسودة تلقائيًا."
+
+#. module: ff_batch_manufacturing
+#: model:ir.actions.act_window,name:ff_batch_manufacturing.ff_batch_manufacturing_action
+#: model:ir.module.module,shortdesc:base.module_ff_batch_manufacturing
+#: model:ir.ui.menu,name:ff_batch_manufacturing.ff_batch_manufacturing_menu
+#: model_terms:ir.ui.view,arch_db:ff_batch_manufacturing.ff_batch_manufacturing_view_form
+#: model_terms:ir.ui.view,arch_db:ff_batch_manufacturing.ff_batch_manufacturing_view_tree
+msgid "Batch Manufacturing"
+msgstr "التصنيع على دفعات"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model,name:ff_batch_manufacturing.model_ff_batch_manufacturing_line
+msgid "Batch Manufacturing Line"
+msgstr "سطر تصنيع على دفعات"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model,name:ff_batch_manufacturing.model_ff_batch_manufacturing
+msgid "Batch Manufacturing Sheet"
+msgstr "ورقة التصنيع على دفعات"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__name
+msgid "Batch Reference"
+msgstr "مرجع الدفعة"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__company_id
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__components_availability_state
+msgid "Component Availability"
+msgstr "توافر المكونات"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__location_src_id
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__location_src_id
+msgid "Component Source Location"
+msgstr "موقع مصدر المكونات"
+
+#. module: ff_batch_manufacturing
+#: model_terms:ir.ui.view,arch_db:ff_batch_manufacturing.ff_batch_manufacturing_view_form
+msgid "Confirm & Manufacture"
+msgstr "تأكيد وتصنيع"
+
+#. module: ff_batch_manufacturing
+#: model:ir.module.module,summary:base.module_ff_batch_manufacturing
+msgid "Create and manufacture multiple products from one batch sheet"
+msgstr "إنشاء وتصنيع عدة منتجات من ورقة دفعة واحدة"
+
+#. module: ff_batch_manufacturing
+#: model_terms:ir.actions.act_window,help:ff_batch_manufacturing.ff_batch_manufacturing_action
+msgid "Create your first batch manufacturing sheet"
+msgstr "أنشئ أول ورقة تصنيع على دفعات"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__create_uid
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__create_date
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__currency_id
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__currency_id
+msgid "Currency"
+msgstr "العملة"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__source_location_override
+msgid "Custom Component Location"
+msgstr "موقع مكونات مخصص"
+
+#. module: ff_batch_manufacturing
+#: model_terms:ir.ui.view,arch_db:ff_batch_manufacturing.ff_batch_manufacturing_view_form
+msgid "Custom Destination"
+msgstr "وجهة مخصصة"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__dest_location_override
+msgid "Custom Finished Location"
+msgstr "موقع منتجات نهائية مخصص"
+
+#. module: ff_batch_manufacturing
+#: model_terms:ir.ui.view,arch_db:ff_batch_manufacturing.ff_batch_manufacturing_view_form
+msgid "Custom Source"
+msgstr "مصدر مخصص"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__components_customized
+msgid "Customized Components"
+msgstr "مكونات مخصصة"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__display_name
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields.selection,name:ff_batch_manufacturing.selection__ff_batch_manufacturing__state__done
+msgid "Done"
+msgstr "تم"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields.selection,name:ff_batch_manufacturing.selection__ff_batch_manufacturing__state__draft
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__estimated_cost
+msgid "Estimated Cost"
+msgstr "التكلفة التقديرية"
+
+#. module: ff_batch_manufacturing
+#. odoo-python
+#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
+msgid "Every manufacturing line needs a positive quantity and a product."
+msgstr "يجب أن يحتوي كل سطر تصنيع على منتج وكمية موجبة."
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields.selection,name:ff_batch_manufacturing.selection__ff_batch_manufacturing_line__components_availability_state__expected
+msgid "Expected"
+msgstr "متوقع"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__location_dest_id
+msgid "Finished Product Destination"
+msgstr "وجهة المنتج النهائي"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__location_dest_id
+msgid "Finished Product Destination Location"
+msgstr "موقع وجهة المنتجات النهائية"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model_terms:ir.actions.act_window,help:ff_batch_manufacturing.ff_batch_manufacturing_action
+msgid ""
+"Group several independent manufacturing orders into one controlled batch."
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__id
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__id
+msgid "ID"
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,help:ff_batch_manufacturing.field_ff_batch_manufacturing__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,help:ff_batch_manufacturing.field_ff_batch_manufacturing__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,help:ff_batch_manufacturing.field_ff_batch_manufacturing__message_has_error
+#: model:ir.model.fields,help:ff_batch_manufacturing.field_ff_batch_manufacturing__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__write_uid
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__write_date
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields.selection,name:ff_batch_manufacturing.selection__ff_batch_manufacturing_line__components_availability_state__late
+msgid "Late"
+msgstr "متأخر"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__manufacturing_date
+msgid "Manufacturing Date"
+msgstr "تاريخ التصنيع"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__line_ids
+#: model_terms:ir.ui.view,arch_db:ff_batch_manufacturing.ff_batch_manufacturing_view_form
+msgid "Manufacturing Lines"
+msgstr "سطور التصنيع"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__picking_type_id
+msgid "Manufacturing Operation Type"
+msgstr "نوع عملية التصنيع"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__production_id
+#: model_terms:ir.ui.view,arch_db:ff_batch_manufacturing.ff_batch_manufacturing_view_form
+msgid "Manufacturing Order"
+msgstr "أمر التصنيع"
+
+#. module: ff_batch_manufacturing
+#. odoo-python
+#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__production_ids
+msgid "Manufacturing Orders"
+msgstr "أوامر التصنيع"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__manufacturing_state
+msgid "Manufacturing Status"
+msgstr "حالة التصنيع"
+
+#. module: ff_batch_manufacturing
+#. odoo-python
+#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
+msgid "Manufacturing locations must be internal stock locations."
+msgstr "يجب أن تكون مواقع التصنيع مواقع مخزون داخلية."
+
+#. module: ff_batch_manufacturing
+#. odoo-python
+#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
+msgid ""
+"Manufacturing order %s has work orders. Complete it through the native Work "
+"Orders flow."
+msgstr ""
+"أمر التصنيع %s يحتوي على أوامر عمل. أكمله من خلال مسار أوامر العمل الأصلي."
+
+#. module: ff_batch_manufacturing
+#. odoo-python
+#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
+msgid ""
+"Manufacturing order %s requires an additional native Odoo step before it can "
+"be completed."
+msgstr "أمر التصنيع %s يحتاج إلى خطوة إضافية أصلية في أودو قبل إتمامه."
+
+#. module: ff_batch_manufacturing
+#. odoo-python
+#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
+msgid "Manufacturing order %s was not completed."
+msgstr "لم يكتمل أمر التصنيع %s."
+
+#. module: ff_batch_manufacturing
+#. odoo-python
+#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
 msgid "Manufacturing quantity must be greater than zero."
 msgstr "يجب أن تكون كمية التصنيع أكبر من صفر."
 
 #. module: ff_batch_manufacturing
+#: model:ir.model.fields,help:ff_batch_manufacturing.field_ff_batch_manufacturing__activity_type_icon
+msgid "Material Symbols icon e.g. checklist"
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#. odoo-python
+#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
+#: model:ir.model.fields.selection,name:ff_batch_manufacturing.selection__ff_batch_manufacturing_line__components_availability_state__unavailable
+msgid "Not Available"
+msgstr "غير متاح"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__note
+#: model_terms:ir.ui.view,arch_db:ff_batch_manufacturing.ff_batch_manufacturing_view_form
+msgid "Notes"
+msgstr "ملاحظات"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__message_needaction_counter
+#, fuzzy
+msgid "Number of Actions"
+msgstr "عدد السطور"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__line_count
+msgid "Number of Lines"
+msgstr "عدد السطور"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__message_has_error_counter
+#, fuzzy
+msgid "Number of errors"
+msgstr "عدد السطور"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,help:ff_batch_manufacturing.field_ff_batch_manufacturing__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,help:ff_batch_manufacturing.field_ff_batch_manufacturing__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#. odoo-python
+#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
 msgid "Only Manufacturing Managers can reset a batch."
 msgstr "مديرو التصنيع فقط يمكنهم إرجاع الدفعة إلى المسودة."
 
 #. module: ff_batch_manufacturing
-msgid "Create your first batch manufacturing sheet"
-msgstr "أنشئ أول ورقة تصنيع على دفعات"
+#. odoo-python
+#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
+msgid "Only a draft batch can be confirmed and manufactured."
+msgstr "يمكن تأكيد وتصنيع الدفعة وهي في حالة المسودة فقط."
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__product_id
+msgid "Product"
+msgstr "المنتج"
+
+#. module: ff_batch_manufacturing
+#. odoo-python
+#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
+msgid "Product %s has no standard manufacturing BoM."
+msgstr "المنتج %s ليس له قائمة مواد تصنيع قياسية."
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__product_qty
+msgid "Quantity to Manufacture"
+msgstr "كمية التصنيع"
+
+#. module: ff_batch_manufacturing
+#: model_terms:ir.ui.view,arch_db:ff_batch_manufacturing.ff_batch_manufacturing_view_form
+msgid "Reset to Draft"
+msgstr "إرجاع إلى المسودة"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__user_id
+msgid "Responsible"
+msgstr "المسؤول"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__activity_user_id
+#, fuzzy
+msgid "Responsible User"
+msgstr "المسؤول"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#. odoo-python
+#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
+msgid "Save the batch line before manufacturing."
+msgstr "احفظ سطر الدفعة قبل بدء التصنيع."
+
+#. module: ff_batch_manufacturing
+#. odoo-python
+#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
+msgid "Save the line before opening its components."
+msgstr "احفظ السطر قبل فتح مكوناته."
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__sequence
+msgid "Sequence"
+msgstr "الترتيب"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__bom_id
+msgid "Standard BoM"
+msgstr "قائمة المواد القياسية"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__state
+msgid "State"
+msgstr "الحالة"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,help:ff_batch_manufacturing.field_ff_batch_manufacturing__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model_terms:ir.ui.view,arch_db:ff_batch_manufacturing.ff_batch_manufacturing_view_form
+msgid "Summary"
+msgstr "الملخص"
+
+#. module: ff_batch_manufacturing
+#. odoo-python
+#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
+msgid "The line company must match the batch company."
+msgstr "يجب أن تتطابق شركة السطر مع شركة الدفعة."
+
+#. module: ff_batch_manufacturing
+#. odoo-python
+#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
+msgid "The operation type must be a Manufacturing operation type."
+msgstr "يجب أن يكون نوع العملية نوع عملية تصنيع."
+
+#. module: ff_batch_manufacturing
+#. odoo-python
+#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
+msgid "The selected location belongs to another company."
+msgstr "الموقع المحدد تابع لشركة أخرى."
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__total_actual_cost
+msgid "Total Actual Cost"
+msgstr "إجمالي التكلفة الفعلية"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__total_estimated_cost
+msgid "Total Estimated Cost"
+msgstr "إجمالي التكلفة التقديرية"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing__total_planned_qty
+msgid "Total Planned Quantity"
+msgstr "إجمالي الكمية المخططة"
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,help:ff_batch_manufacturing.field_ff_batch_manufacturing__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: ff_batch_manufacturing
+#: model:ir.model.fields,field_description:ff_batch_manufacturing.field_ff_batch_manufacturing_line__uom_id
+msgid "Unit of Measure"
+msgstr "وحدة القياس"
+
+#. module: ff_batch_manufacturing
+#: model_terms:ir.ui.view,arch_db:ff_batch_manufacturing.ff_batch_manufacturing_view_form
+msgid "View Components"
+msgstr "عرض المكونات"
+
+#. module: ff_batch_manufacturing
+#. odoo-python
+#: code:addons/ff_batch_manufacturing/models/batch_manufacturing.py:0
+msgid "id"
+msgstr ""
+
