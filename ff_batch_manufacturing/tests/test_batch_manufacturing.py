@@ -68,6 +68,13 @@ class TestBatchManufacturing(TransactionCase):
         self.assertEqual(action['target'], 'new')
         self.assertFalse(action['context']['create'])
 
+    def test_standard_quantity_widget_data_is_available_on_draft_line(self):
+        batch = self._batch()
+        line = batch.line_ids
+        self.assertTrue(line.display_qty_widget)
+        self.assertEqual(line.product_uom_id, line.uom_id)
+        self.assertEqual(line.product_uom_qty, line.product_qty)
+
     def test_quantity_scales_current_component_moves(self):
         batch = self._batch()
         line = batch.line_ids
