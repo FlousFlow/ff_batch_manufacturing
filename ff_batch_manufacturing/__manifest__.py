@@ -1,5 +1,5 @@
 {
-    'name': 'Flous Flow Batch Manufacturing',
+    'name': 'Batch Manufacturing',
     'summary': 'Create and manufacture multiple products from one batch sheet',
     'description': """
 Flous Flow Batch Manufacturing
@@ -14,7 +14,9 @@ executes eligible simple manufacturing orders through native MRP workflows.
     'category': 'Manufacturing/Manufacturing',
     'author': 'Flous Flow',
     'website': 'https://flousflow.com',
+    'support': 'support@flousflow.com',
     'license': 'LGPL-3',
+    'images': ['static/description/banner.jpg'],
     'depends': ['mrp'],
     'data': [
         'security/ir.access.csv',

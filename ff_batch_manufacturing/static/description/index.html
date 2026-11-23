@@ -1,17 +1,23 @@
 <section>
   <img src="banner.jpg" alt="Flous Flow Batch Manufacturing" style="max-width: 100%; height: auto;"/>
-  <h1>Flous Flow Batch Manufacturing</h1>
-  <h2>التصنيع على دفعات</h2>
-  <p>أنشئ ورقة واحدة تحتوي على عدة منتجات تصنيع، مع أمر تصنيع Odoo مستقل لكل
-  سطر، ثم راجع المكونات ونفّذ الحالات البسيطة من زر واحد.</p>
-  <h3>المميزات</h3>
+  <h1>Batch Manufacturing</h1>
+  <p>Flous Flow Batch Manufacturing creates one controlled batch sheet for
+  multiple products while keeping one independent native Odoo Manufacturing
+  Order per line.</p>
+  <h3>Features</h3>
   <ul>
-    <li>أمر تصنيع مستقل لكل منتج ولكل سطر.</li>
-    <li>تعديل مكونات السطر بدون تعديل الـ Master BoM.</li>
-    <li>تغيير الكمية مع إعادة تحجيم المكونات الحالية.</li>
-    <li>مواقع افتراضية من الهيدر مع إمكانية override لكل سطر.</li>
-    <li>مؤشر توافر المكونات وتنفيذ عبر محرك Odoo الأصلي.</li>
-    <li>Reset to Draft آمن للمديرين فقط.</li>
+    <li>Independent native Manufacturing Order for every saved line.</li>
+    <li>Review and customize a line's components without changing the master BoM.</li>
+    <li>Scale the current component moves when a draft quantity changes.</li>
+    <li>Header source and destination locations with per-line overrides.</li>
+    <li>Availability preview and execution through Odoo's native MRP and stock engines.</li>
+    <li>Manager-only reset protection after completion.</li>
   </ul>
+  <h3>Workflow</h3>
+  <ol>
+    <li>Create a batch from Manufacturing &gt; Operations &gt; Batch Manufacturing.</li>
+    <li>Add products with standard manufacturing BoMs and save the lines.</li>
+    <li>Review components, then use Confirm &amp; Manufacture for eligible simple orders.</li>
+  </ol>
   <p><strong>Odoo 20 Community | Dependency: Manufacturing (MRP)</strong></p>
 </section>
