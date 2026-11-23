@@ -8,6 +8,9 @@ multiple different manufacturing products. Each line remains a separate native
 traceability, valuation and accounting continue to use Odoo's Manufacturing and
 Inventory engines.
 
+The package includes the supplied Flous Flow/Odoo 20 cover artwork in
+`static/description/banner.jpg` for the Apps description page.
+
 ## Workflow
 
 1. Open **Manufacturing → Operations → Batch Manufacturing**.
