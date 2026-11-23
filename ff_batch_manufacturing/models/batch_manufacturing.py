@@ -209,14 +209,6 @@ class FfBatchManufacturingLine(models.Model):
         ('available', 'Available'), ('expected', 'Expected'), ('late', 'Late'), ('unavailable', 'Not Available'),
     ], string='Component Availability', compute='_compute_availability')
     components_availability = fields.Char(string='Availability', compute='_compute_availability')
-    # Standard Sales quantity-at-date widget inputs, calculated for this line's source location.
-    display_qty_widget = fields.Boolean(compute='_compute_qty_at_date_widget')
-    qty_available_today = fields.Float(compute='_compute_qty_at_date_widget')
-    virtual_available_at_date = fields.Float(compute='_compute_qty_at_date_widget')
-    scheduled_date = fields.Datetime(compute='_compute_qty_at_date_widget')
-    product_uom_qty = fields.Float(related='product_qty', string='Quantity', readonly=True)
-    product_uom_id = fields.Many2one(related='uom_id', readonly=True)
-    qty_delivered = fields.Float(compute='_compute_qty_at_date_widget')
     estimated_cost = fields.Monetary(string='Estimated Cost', compute='_compute_costs', store=True)
     actual_cost = fields.Monetary(string='Actual Cost', compute='_compute_costs', store=True)
     currency_id = fields.Many2one(related='company_id.currency_id', readonly=True)
@@ -256,20 +248,6 @@ class FfBatchManufacturingLine(models.Model):
                     break
             line.components_availability_state = 'unavailable' if unavailable else 'available'
             line.components_availability = _('Not Available') if unavailable else _('Available')
-
-    @api.depends('product_id', 'product_qty', 'location_src_id', 'batch_id.state', 'batch_id.manufacturing_date')
-    def _compute_qty_at_date_widget(self):
-        Quant = self.env['stock.quant']
-        for line in self:
-            line.display_qty_widget = bool(line.product_id and line.batch_id.state == 'draft')
-            line.qty_available_today = 0.0
-            line.virtual_available_at_date = 0.0
-            line.qty_delivered = 0.0
-            line.scheduled_date = fields.Datetime.to_datetime(line.batch_id.manufacturing_date) if line.batch_id.manufacturing_date else False
-            if line.product_id and line.location_src_id:
-                available = Quant._get_available_quantity(line.product_id, line.location_src_id, strict=True)
-                line.qty_available_today = available
-                line.virtual_available_at_date = available
 
     @api.onchange('batch_id')
     def _onchange_batch_id(self):
