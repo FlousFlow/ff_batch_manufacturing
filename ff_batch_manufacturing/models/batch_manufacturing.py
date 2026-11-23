@@ -215,6 +215,7 @@ class FfBatchManufacturingLine(models.Model):
     virtual_available_at_date = fields.Float(compute='_compute_qty_at_date_widget')
     scheduled_date = fields.Datetime(compute='_compute_qty_at_date_widget')
     product_uom_qty = fields.Float(related='product_qty', string='Quantity', readonly=True)
+    product_uom_id = fields.Many2one(related='uom_id', readonly=True)
     qty_delivered = fields.Float(compute='_compute_qty_at_date_widget')
     estimated_cost = fields.Monetary(string='Estimated Cost', compute='_compute_costs', store=True)
     actual_cost = fields.Monetary(string='Actual Cost', compute='_compute_costs', store=True)

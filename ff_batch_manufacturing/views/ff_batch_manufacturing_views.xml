@@ -59,6 +59,7 @@
                                     <field name="product_id"/>
                                     <field name="product_qty"/>
                                     <field name="product_uom_qty" column_invisible="True"/>
+                                    <field name="product_uom_id" column_invisible="True"/>
                                     <field name="qty_delivered" column_invisible="True"/>
                                     <field name="uom_id"/>
                                     <field name="location_src_id" optional="hide"/>
