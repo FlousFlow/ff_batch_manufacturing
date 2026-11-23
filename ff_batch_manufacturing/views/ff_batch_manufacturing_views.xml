@@ -68,7 +68,7 @@
                                     <field name="qty_available_today" column_invisible="True"/>
                                     <field name="virtual_available_at_date" column_invisible="True"/>
                                     <field name="scheduled_date" column_invisible="True"/>
-                                    <widget name="simple_qty_at_date_widget" invisible="not display_qty_widget"/>
+                                    <widget name="simple_qty_at_date_widget" string="" invisible="not display_qty_widget"/>
                                     <field name="estimated_cost" widget="monetary" optional="hide"/>
                                     <field name="currency_id" column_invisible="True"/>
                                     <button name="action_view_components" type="object" string="View Components" icon="fa-list"/>
